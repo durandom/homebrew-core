@@ -1,10 +1,20 @@
 class Adaptivecpp < Formula
   desc "SYCL and C++ standard parallelism for CPUs and GPUs"
   homepage "https://adaptivecpp.github.io/"
-  url "https://github.com/AdaptiveCpp/AdaptiveCpp/archive/refs/tags/v25.10.0.tar.gz"
-  sha256 "334b16ebff373bd2841f83332c2ae9a45ec192f2cf964d5fdfe94e1140776059"
   license "BSD-2-Clause"
+  revision 1
   head "https://github.com/AdaptiveCpp/AdaptiveCpp.git", branch: "develop"
+
+  stable do
+    url "https://github.com/AdaptiveCpp/AdaptiveCpp/archive/refs/tags/v25.10.0.tar.gz"
+    sha256 "334b16ebff373bd2841f83332c2ae9a45ec192f2cf964d5fdfe94e1140776059"
+
+    # Backport support for LLVM 22
+    patch do
+      url "https://github.com/AdaptiveCpp/AdaptiveCpp/commit/139c849037e8572b55f718fd38ad7ea1065ca9d5.patch?full_index=1"
+      sha256 "afa21bc7588804110573c14e47166367c43107a6c10eb2ab650bda731ed67cf3"
+    end
+  end
 
   bottle do
     sha256 arm64_tahoe:   "47170783eb0de616f48a47f956ead8d7940144c6d942c068ec47d6b5039800b4"
